@@ -280,7 +280,6 @@ if the fax still failes, the fax might be to large, try to split it into two fax
 
 Aacom Email to Fax Services.
 EOF
-send_msg 0
 cat <<EOF >> $LOGFILE
 fax faild
 EOF
