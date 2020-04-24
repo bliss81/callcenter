@@ -3,8 +3,7 @@ import sys
 file=open("/var/spool/asterisk/name.txt","r")
 name1=file.readlines()
 file.close()
-file=open("/var/spool/asterisk/name.txt","w")
-file.close()
+
 print("sys",sys.argv)
 ext=sys.argv[8]
 ext1=ext.split("/")
@@ -20,6 +19,9 @@ for line in name1:
    name=words[3]
 
 print("new name",name)
+file=open("/var/spool/asterisk/name.txt","w")
+file.write(name)
+file.close()
 opp=""
 argvnew=sys.argv
 
