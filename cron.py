@@ -4,6 +4,7 @@ file=open("/var/spool/asterisk/name.txt","r")
 name1=file.readlines()
 file.close()
 
+#doron
 print("sys",sys.argv)
 ext=sys.argv[8]
 ext1=ext.split("/")
