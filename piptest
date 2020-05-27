@@ -1,0 +1,18 @@
+pipeline {
+	agent any
+	environment {
+		secret = credentials('secret_text')
+	} 
+	stages {
+		stage('Example stage 1') {
+			steps { 
+				sh 'echo $secret'
+			} 
+		} 
+	}
+post {
+always {echo "always runnung"}
+success {echo "only success"}
+failure {echo "only failure"}
+}
+}
