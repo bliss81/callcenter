@@ -4,7 +4,7 @@ stages {
 	    stage(scm) {
 		steps {
 		checkout scm
-		sh 'cd { $workspace }'
+		sh 'cd {$workspace}'
 		sh 'chmod 755 *'
 		 }					 }	
 		
@@ -30,7 +30,7 @@ stages {
 		     }
 	       steps {
               sh 'echo "running c"'
-	      sh 'cd { $workspace }'
+	      sh 'cd {$workspace}'
 	      sh 'gcc cfile' 
 		         }
 	         }	
