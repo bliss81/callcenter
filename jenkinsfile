@@ -12,12 +12,10 @@ stages {
 	    }
 	    stage(scm) {
 		steps {
+		checkout scm
 		sh '''
 		echo "downloading from github" 
 		echo "downloading from github" >> ${report_file}
-		'''
-		checkout scm
-		sh ''' 
 		echo "changing permissions" 
 		echo "changing permissions" >> ${report_file}
 		cd ${WORKSPACE}/scripts
