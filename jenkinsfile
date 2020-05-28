@@ -6,7 +6,7 @@ stages {
 	    sh '''
 	    report_file="${HOME}/report/report"
 	    cd ${HOME}
-	    mkdir report
+	    mkdir -p report
 	    echo "hello this is build number ${BUILD_NUMBER}" >> ${report_file}
 	    echo "our environment virables are:" >> ${report_file}
 	    printenv >> ${report_file}'''
