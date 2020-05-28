@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+stages {
+	    stage(download from git) {
+		checkout scm
+								 }	
+		
+		stage(bash) {
+		when {
+		         expression { params.cparam == 'bash' || params.cparam == 'all' }
+		     }
+	       steps {
+              sh 'echo "running bash"'
+				 }
+					}
+	    stage(python) {
+		when {
+		         expression { params.cparam == 'python' || params.cparam == 'all' }
+		     }
+	       steps {
+              sh 'echo "running python"'
+				 }
+					  }	
+    stage(c) {
+		when {
+		         expression { params.cparam == 'c' || params.cparam == 'all' }
+		     }
+	       steps {
+              sh 'echo "running c"'
+		         }
+	         }	
+        }
+    }
