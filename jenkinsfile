@@ -1,7 +1,7 @@
 pipeline {
     agent any
 stages {
-	    stage(download from git) {
+	    stage(scm) {
 		checkout scm
 								 }	
 		
