@@ -2,7 +2,7 @@ pipeline {
     agent any
 stages {
 	    stage (hello) {
-	    sh'''
+	    sh '''
 	    echo "hello this is build number ${build_number}"
 	    echo "our environment virables are:"
 	    printenv'''
