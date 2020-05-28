@@ -14,7 +14,7 @@ stages {
 		     }
 	       steps {
               sh '''echo "running bash file"
-                    .${WORKSPACE}/scripts/bashfile'''
+                    .${WORKSPACE}/scripts/bashfile.sh'''
 
 				 }
 					}
