@@ -29,9 +29,10 @@ stages {
 		         expression { params.cparam == 'c' || params.cparam == 'all' }
 		     }
 	       steps {
-              sh 'echo "running c"'
-	      sh 'cd ${workspace}'
-	      sh 'gcc cfile' 
+              sh '''echo "running c"
+	       cd ${WORKSPACE}
+	        gcc cfile
+		'''
 		         }
 	         }	
         }
