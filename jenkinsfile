@@ -60,3 +60,9 @@ stages {
 	         }	
         }
     }
+    post {
+    success {sh '''echo "result success"
+    		   echo "result success" >> ${report_file}'''}
+    failure {sh '''echo "result failure"
+    		   echo "result failure " >> ${report_file}'''}
+    }
