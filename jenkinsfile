@@ -4,15 +4,22 @@ stages {
 	    stage (hello) {
             steps {
 	    sh '''
-	    echo "hello this is build number ${BUILD_NUMBER}"
-	    echo "our environment virables are:"
-	    printenv'''
+	    report_file="${HOME}/report/report"
+	    mkdir -p ${HOME}/report
+	    echo "hello this is build number ${BUILD_NUMBER}" >> ${report_file}
+	    echo "our environment virables are:" >> ${report_file}
+	    printenv >> ${report_file}'''
 	    }
 	    }
 	    stage(scm) {
 		steps {
+		echo "downloading from github" 
+		echo "downloading from github" >> ${report_file}
 		checkout scm
-		sh '''cd ${WORKSPACE}/scripts
+		sh ''' 
+		echo "changing permissions" 
+		echo "changing permissions" >> ${report_file}
+		cd ${WORKSPACE}/scripts
 		chmod 755 *'''
 		 }					 }	
 		
@@ -22,6 +29,7 @@ stages {
 		     }
 	       steps {
               sh '''echo "running bash file"
+	      	    echo "running bash file" >> ${report_file}
                     bash ${WORKSPACE}/scripts/bashfile.sh'''
 
 				 }
@@ -31,7 +39,8 @@ stages {
 		         expression { params.cparam == 'python' || params.cparam == 'all' }
 		     }
 	       steps {
-              sh '''echo "running python"
+              sh '''echo "running python file" 
+	      	    echo "running python file" >> ${report_file}
 	      python ${WORKSPACE}/scripts/pyfile.py'''
 				 }
 					  }	
@@ -41,8 +50,10 @@ stages {
 		     }
 	       steps {
               sh '''echo "compiling c file"
+	      		echo "compiling c file" >> ${report_file}
               gcc ${WORKSPACE}/scripts/cfile.c -o crunfile
 	           echo "running compiled file"
+		   echo "running compiled file"  >> ${report_file}
               ${WORKSPACE}/crunfile'''
 		         }
 	         }	
