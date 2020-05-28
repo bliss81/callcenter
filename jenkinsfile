@@ -4,7 +4,7 @@ stages {
 	    stage (hello) {
             steps {
 	    sh '''
-	    echo "hello this is build number ${build_number}"
+	    echo "hello this is build number ${BUILD_NUMBER}"
 	    echo "our environment virables are:"
 	    printenv'''
 	    }
