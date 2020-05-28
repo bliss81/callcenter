@@ -8,6 +8,7 @@ stages {
             steps {
 	    sh '''
 	    echo "hello this is build number ${BUILD_NUMBER} results:" >> ${report_file}
+	    '''
 	    }
 	    }
 	    stage(scm) {
