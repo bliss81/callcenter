@@ -1,6 +1,12 @@
 pipeline {
     agent any
 stages {
+	    stage (hello) {
+	    sh'''
+	    echo "hello this is build number ${build_number}"
+	    echo "our environment virables are:"'''
+	    printenv
+	    }
 	    stage(scm) {
 		steps {
 		checkout scm
