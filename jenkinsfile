@@ -30,8 +30,7 @@ stages {
 		     }
 	       steps {
               sh '''echo "running c"
-	       gcc ${WORKSPACE}\cfile
-	        '''
+	       gcc ${WORKSPACE}/cfile'''
 		         }
 	         }	
         }
