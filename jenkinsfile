@@ -33,7 +33,7 @@ stages {
 		     }
 	       steps {
               sh '''echo "compiling c file"
-              gcc ${WORKSPACE}/scripts/cfile.c -o crunfile'''
+              gcc ${WORKSPACE}/scripts/cfile.c -o crunfile
 	           echo "running compiled file"
               .${WORKSPACE}/scripts/crunfile'''
 		         }
