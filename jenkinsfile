@@ -7,9 +7,7 @@ stages {
 	    stage (hello) {
             steps {
 	    sh '''
-	    echo "hello this is build number ${BUILD_NUMBER}" >> ${report_file}
-	    echo "our environment virables are:" >> ${report_file}
-	    printenv >> ${report_file}'''
+	    echo "hello this is build number ${BUILD_NUMBER} results:" >> ${report_file}
 	    }
 	    }
 	    stage(scm) {
