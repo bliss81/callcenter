@@ -4,7 +4,7 @@ stages {
 	    stage(scm) {
 		steps {
 		checkout scm
-		sh '''cd ${WORKSPACE}
+		sh '''cd ${WORKSPACE}/scripts
 		chmod 755 *'''
 		 }					 }	
 		
@@ -13,7 +13,9 @@ stages {
 		         expression { params.cparam == 'bash' || params.cparam == 'all' }
 		     }
 	       steps {
-              sh 'echo "running bash"'
+              sh '''echo "running bash file"
+                    .${WORKSPACE}/scripts/bashfile'''
+
 				 }
 					}
 	    stage(python) {
@@ -21,7 +23,8 @@ stages {
 		         expression { params.cparam == 'python' || params.cparam == 'all' }
 		     }
 	       steps {
-              sh 'echo "running python"'
+              sh '''echo "running python"
+	      python ${WORKSPACE}/scripts/pyfile.py''
 				 }
 					  }	
     stage(c) {
@@ -29,9 +32,10 @@ stages {
 		         expression { params.cparam == 'c' || params.cparam == 'all' }
 		     }
 	       steps {
-              sh '''echo "running c"
-              gcc ${WORKSPACE}/cfile.c -o crunfile'''
-
+              sh '''echo "compiling c file"
+              gcc ${WORKSPACE}/scripts/cfile.c -o crunfile'''
+	           echo "running compiled file"
+              .${WORKSPACE}/scripts/crunfile'''
 		         }
 	         }	
         }
