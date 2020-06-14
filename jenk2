@@ -5,7 +5,9 @@ pipeline {
  }
 stages {
 	    stage (hello) {
+	                steps {
     		sh '''echo "cparam $cparam" '''
+		 }
 		 }
 		 }	
 		 }
