@@ -21,7 +21,10 @@ stages {
 		echo "changing permissions" >> ${report_file}
 		cd ${WORKSPACE}/scripts
 		chmod 755 *
-		echo params.cparam'''
+		echo cparam
+		echo $cparam
+		echo ${cparam}
+		'''
 		 }
 		 }	
 		
