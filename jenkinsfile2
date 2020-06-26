@@ -19,7 +19,7 @@ stages {
 	       steps {
               sh '''echo "running docker"
 	      	    echo "running docker" >> ${report_file}
-                    docker run -it hello-world '''
+                    docker run hello-world '''
 
 				 }
 					}
@@ -30,7 +30,7 @@ stages {
 	       steps {
               sh '''echo "running docker"
 	      	    echo "running docker" >> ${report_file}
-                    docker run -it hello-world '''
+                    docker run hello-world '''
 				 }
 					  }	
         }
