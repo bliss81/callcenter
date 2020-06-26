@@ -17,7 +17,8 @@ stages {
 		         expression { params.os == 'ubuntu' }
 		     }
 	       steps {
-              sh '''echo "running docker"
+              sh ''' whoami
+	      	    echo "running docker"
 	      	    echo "running docker" >> ${report_file}
                     docker run hello-world '''
 
