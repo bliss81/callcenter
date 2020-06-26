@@ -11,22 +11,10 @@ stages {
 	    '''
 	    }
 	    }
-	    stage(scm) {
-		steps {
-		checkout scm
-		sh '''
-		echo "downloading from github" 
-		echo "downloading from github" >> ${report_file}
-		echo "changing permissions" 
-		echo "changing permissions" >> ${report_file}
-		cd ${WORKSPACE}/scripts
-		chmod 755 *'''
-		 }
-		 }	
-		
+	    	
 		stage(ubuntu) {
 		when {
-		         expression { params.cparam == 'bash' }
+		         expression { params.os == 'ubuntu' }
 		     }
 	       steps {
               sh '''echo "running docker"
@@ -37,7 +25,7 @@ stages {
 					}
 	    stage(centos) {
 		when {
-		         expression { params.cparam == 'python' }
+		         expression { params.os == 'centos' }
 		     }
 	       steps {
               sh '''echo "running docker"
