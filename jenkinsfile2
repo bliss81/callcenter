@@ -24,40 +24,27 @@ stages {
 		 }
 		 }	
 		
-		stage(bash) {
+		stage(ubuntu) {
 		when {
-		         expression { params.cparam == 'bash' || params.cparam == 'all' }
+		         expression { params.cparam == 'bash' }
 		     }
 	       steps {
-              sh '''echo "running bash file"
-	      	    echo "running bash file" >> ${report_file}
-                    bash ${WORKSPACE}/scripts/bashfile.sh'''
+              sh '''echo "running docker"
+	      	    echo "running docker" >> ${report_file}
+                    docker run -it hello-world '''
 
 				 }
 					}
-	    stage(python) {
+	    stage(centos) {
 		when {
-		         expression { params.cparam == 'python' || params.cparam == 'all' }
+		         expression { params.cparam == 'python' }
 		     }
 	       steps {
-              sh '''echo "running python file" 
-	      	    echo "running python file" >> ${report_file}
-	      python ${WORKSPACE}/scripts/pyfile.py'''
+              sh '''echo "running docker"
+	      	    echo "running docker" >> ${report_file}
+                    docker run -it hello-world '''
 				 }
 					  }	
-    stage(c) {
-		when {
-		         expression { params.cparam == 'c' || params.cparam == 'all' }
-		     }
-	       steps {
-              sh '''echo "compiling c file"
-	      		echo "compiling c file" >> ${report_file}
-              gcc ${WORKSPACE}/scripts/cfile.c -o crunfile
-	           echo "running compiled file"
-		   echo "running compiled file"  >> ${report_file}
-              ${WORKSPACE}/crunfile'''
-		         }
-	         }	
         }
         post {
     success {sh '''echo "result success"
