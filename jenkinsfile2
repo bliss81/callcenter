@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent docker1
  environment {
  report_file="${WORKSPACE}/report"
  }
