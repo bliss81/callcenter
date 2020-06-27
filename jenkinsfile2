@@ -20,7 +20,7 @@ stages {
               sh ''' whoami
 	      	    echo "running docker"
 	      	    echo "running docker" >> ${report_file}
-                    docker run hello-world '''
+                    docker run -it ubuntu /bin/bash -c “yum install python; echo hello” '''
 
 				 }
 					}
@@ -31,7 +31,7 @@ stages {
 	       steps {
               sh '''echo "running docker"
 	      	    echo "running docker" >> ${report_file}
-                    docker run hello-world '''
+                    docker run -it centos /bin/bash -c “yum install python; echo hello” '''
 				 }
 					  }	
         }
