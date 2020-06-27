@@ -20,7 +20,7 @@ stages {
               sh ''' whoami
 	      	    echo "running docker"
 	      	    echo "running docker" >> ${report_file}
-		    docker run -t ubuntu /bin/bash -c "apt install gcc -y && gcc -v"'''
+		    docker run -t ubuntu /bin/bash -c "sudo apt install build-essential -y && gcc -v"'''
 
 				 }
 					}
