@@ -20,7 +20,7 @@ stages {
               sh ''' whoami
 	      	    echo "running docker"
 	      	    echo "running docker" >> ${report_file}
-                    docker run -t ubuntu /bin/bash -c “apt install python; echo hello” '''
+		    docker run -it ubuntu /bin/bash -c "apt install gcc -y && gcc -v"'''
 
 				 }
 					}
@@ -31,7 +31,7 @@ stages {
 	       steps {
               sh '''echo "running docker"
 	      	    echo "running docker" >> ${report_file}
-                    docker run -t centos /bin/bash -c “yum install python; echo hello” '''
+                    docker run -it centos /bin/bash -c "yum install gcc -y && gcc -v"'''
 				 }
 					  }	
         }
