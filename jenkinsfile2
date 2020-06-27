@@ -20,8 +20,7 @@ stages {
               sh ''' whoami
 	      	    echo "running docker"
 	      	    echo "running docker" >> ${report_file}
-		    docker run -t ubuntu /bin/bash -c "apt install build-essential -y && gcc -v"'''
-
+		    docker run -it ubuntu:latest /bin/bash -c "apt update && apt-get -y install curl && apt install build-essential -y && gcc -v"'''
 				 }
 					}
 	    stage(centos) {
