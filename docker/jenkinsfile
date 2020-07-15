@@ -1,6 +1,12 @@
 pipeline {
   agent { node { label 'docker1' } }
 
+environment {
+ IMAGE_NAME="webserver"
+ REPO_NAME="${DOCKER_HUB_NAME}/${IMAGE_NAME}"
+ USER=credentials('DOCKERHUB_USER')
+ PASS=credentials('DOCKERHUB_PASSWORD')	
+	}  
    stages {
       stage('Clone Sources') {
         steps {
@@ -34,6 +40,7 @@ pipeline {
       stage('Push a docker image') {
          steps {
 			sh '''
+				docker login -u ${USER} -p ${PASS}
 				docker tag webserver:${BUILD_NUMBER} ${REPO_NAME}/webserver:${BUILD_NUMBER}
 				docker push ${REPO_NAME}/webserver:${BUILD_NUMBER}
 			'''
