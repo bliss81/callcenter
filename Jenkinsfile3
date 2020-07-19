@@ -30,8 +30,13 @@ stages {
 		stage(bash) {
 		steps {
 		sh ''' if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; then
-		echo "running bash file"
-	      	echo "running bash file" >> ${report_file}
+		echo "creating docker imagefile for bash file"
+	        cd ${WORKSPACE}
+	        echo '''FROM ubuntu
+	        COPY ./scripts/bash.sh /app
+	        WORKDIR /app
+	        CMD bash /app/bash.sh '''> Dockerfile
+		echo "running bash file" >> ${report_file}
                 bash ${WORKSPACE}/scripts/bashfile.sh
 		fi'''         	
 		}
@@ -40,7 +45,14 @@ stages {
 		
 	       steps {
 	       sh ''' if [ $COMPILER = "python" ] | [ $COMPILER = "all" ]; then
-               echo "running python file" 
+               echo "creating docker imagefile for bash file"
+	       cd ${WORKSPACE}
+	       echo '''FROM python:3.7-alpine
+	       COPY ./scripts/python.py /app
+	       WORKDIR /app
+	       CMD python /app/python.py '''> Dockerfile
+	             
+	       echo "running python file" 
 	       echo "running python file" >> ${report_file}
 	       python ${WORKSPACE}/scripts/pyfile.py
 	       fi'''       
@@ -48,10 +60,16 @@ stages {
 		 }	
     stage(c) {
 	       steps {
-	      sh ''' if [ $COMPILER = "python" ] | [ $COMPILER = "all" ]; then
-	      echo "compiling c file"
-	      echo "compiling c file" >> ${report_file}
-              gcc ${WORKSPACE}/scripts/cfile.c -o crunfile
+	      sh ''' if [ $COMPILER = "cpp" ] | [ $COMPILER = "all" ]; then
+	      echo "creating docker imagefile for bash file"
+              cd ${WORKSPACE}
+	      echo '''FROM gcc
+                      COPY ./scripts/python.c /app
+		      run gcc -o /app/app /app/cpp.c
+		      run chmod 777 /app/app
+		      cmd /app/app'''> Dockerfile
+	      
+	      gcc ${WORKSPACE}/scripts/cfile.c -o crunfile
 	      echo "running compiled file"
 	      echo "running compiled file"  >> ${report_file}
               ${WORKSPACE}/crunfile
