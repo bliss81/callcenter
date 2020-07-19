@@ -29,33 +29,33 @@ stages {
 		
 		stage(bash) {
 		steps {
-		sh ''' if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; 
-		then
+		sh ''' if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; then
 		echo "running bash file"
 	      	echo "running bash file" >> ${report_file}
-                bash ${WORKSPACE}/scripts/bashfile.sh'''
-         	 }
+                bash ${WORKSPACE}/scripts/bashfile.sh
+		fi'''         	
+		}
 	 	}
 	    stage(python) {
 		
 	       steps {
-	       sh ''' if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; 
+	       sh ''' if [ $COMPILER = "python" ] | [ $COMPILER = "all" ]; then
                echo "running python file" 
 	       echo "running python file" >> ${report_file}
-	       python ${WORKSPACE}/scripts/pyfile.py'''
-				 }
-					  }	
+	       python ${WORKSPACE}/scripts/pyfile.py
+	       fi'''       
+		 }
+		 }	
     stage(c) {
-		when {
-		         expression { params.cparam == 'c' || params.cparam == 'all' }
-		     }
 	       steps {
-              sh '''echo "compiling c file"
-	      		echo "compiling c file" >> ${report_file}
+	      sh ''' if [ $COMPILER = "python" ] | [ $COMPILER = "all" ]; then
+	      echo "compiling c file"
+	      echo "compiling c file" >> ${report_file}
               gcc ${WORKSPACE}/scripts/cfile.c -o crunfile
-	           echo "running compiled file"
-		   echo "running compiled file"  >> ${report_file}
-              ${WORKSPACE}/crunfile'''
+	      echo "running compiled file"
+	      echo "running compiled file"  >> ${report_file}
+              ${WORKSPACE}/crunfile
+	      fi'''
 		         }
 	         }	
         }
