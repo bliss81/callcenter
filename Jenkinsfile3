@@ -2,7 +2,10 @@ pipeline {
     agent any
  environment {
  report_file="${WORKSPACE}/report"
- }
+ COMPILER=${COMP_NAME}
+ USER=credentials('DOCKERHUB_USER')
+ PASS=credentials('DOCKERHUB_PASSWORD')	
+	}  
 stages {
 	    stage (hello) {
             steps {
@@ -25,24 +28,21 @@ stages {
 		 }	
 		
 		stage(bash) {
-		when {
-		         expression { params.cparam == 'bash' || params.cparam == 'all' }
-		     }
-	       steps {
-              sh '''echo "running bash file"
-	      	    echo "running bash file" >> ${report_file}
-                    bash ${WORKSPACE}/scripts/bashfile.sh'''
-
-				 }
-					}
+		steps {
+		sh ''' if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; 
+		then
+		echo "running bash file"
+	      	echo "running bash file" >> ${report_file}
+                bash ${WORKSPACE}/scripts/bashfile.sh'''
+         	 }
+	 	}
 	    stage(python) {
-		when {
-		         expression { params.cparam == 'python' || params.cparam == 'all' }
-		     }
+		
 	       steps {
-              sh '''echo "running python file" 
-	      	    echo "running python file" >> ${report_file}
-	      python ${WORKSPACE}/scripts/pyfile.py'''
+	       sh ''' if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; 
+               echo "running python file" 
+	       echo "running python file" >> ${report_file}
+	       python ${WORKSPACE}/scripts/pyfile.py'''
 				 }
 					  }	
     stage(c) {
