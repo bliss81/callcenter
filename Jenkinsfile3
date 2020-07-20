@@ -30,17 +30,18 @@ stages {
 		stage(bash) {
 		steps {
 		sh ''' if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; then
-		echo "creating docker imagefile for bash file"
+		echo "creating dockerfile for bash code"
 	        cd ${WORKSPACE}
 	        echo '''FROM ubuntu
 	        RUN mkdir /home/doron && cd /home/doron
 		COPY ./scripts/bash.sh /home/doron
 	        WORKDIR /home/doron
 	        CMD bash /home/doron/bash.sh '''> Dockerfile
-		echo "running bash file" >> ${report_file}
-                bash ${WORKSPACE}/scripts/bashfile.sh
+		echo "building bash docker image" 
+		echo "building bash docker image" >> ${report_file}
+		docker build -t bashimg:${BUILD_NUMBER} . && docker run bashimg:${BUILD_NUMBER}
 		fi'''         	
-		docker build -t bashimg:${BUILD_NUMBER} . && docker run bashimg:
+		
 		}
 	 	}
 	    stage(python) {
