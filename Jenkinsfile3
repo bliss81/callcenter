@@ -50,11 +50,10 @@ stages {
 	       sh ''' if [ $COMPILER = "python" ] | [ $COMPILER = "all" ]; then
                echo "creating docker imagefile for bash file"
 	       cd ${WORKSPACE}
-	       echo '''FROM python:3.7-alpine
-	       COPY ./scripts/python.py /app
-	       WORKDIR /app
-	       CMD python /app/python.py '''> Dockerfile
-	             
+	       echo "FROM python:3.7-alpine" > Dockerfile
+	       echo "COPY ./scripts/python.py /app" >> Dockerfile
+	       echo "WORKDIR /app" >> Dockerfile
+	       echo "CMD python /app/python.py" >> Dockerfile
 	       echo "running python file" 
 	       echo "running python file" >> ${report_file}
 	       python ${WORKSPACE}/scripts/pyfile.py
@@ -66,12 +65,11 @@ stages {
 	      sh ''' if [ $COMPILER = "cpp" ] | [ $COMPILER = "all" ]; then
 	      echo "creating docker imagefile for bash file"
               cd ${WORKSPACE}
-	      echo '''FROM gcc
-                      COPY ./scripts/python.c /app
-		      run gcc -o /app/app /app/cpp.c
-		      run chmod 777 /app/app
-		      cmd /app/app'''> Dockerfile
-	      
+	      echo "FROM gcc" > Dockerfile
+              echo "COPY ./scripts/python.c /app" >> Dockerfile
+		echo "run gcc -o /app/app /app/cpp.c" >> Dockerfile
+		echo "run chmod 777 /app/app" >> Dockerfile
+		echo "cmd /app/app" >> Dockerfile" 
 	      gcc ${WORKSPACE}/scripts/cfile.c -o crunfile
 	      echo "running compiled file"
 	      echo "running compiled file"  >> ${report_file}
