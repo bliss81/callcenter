@@ -33,12 +33,14 @@ stages {
 		echo "creating docker imagefile for bash file"
 	        cd ${WORKSPACE}
 	        echo '''FROM ubuntu
-	        COPY ./scripts/bash.sh /app
-	        WORKDIR /app
-	        CMD bash /app/bash.sh '''> Dockerfile
+	        RUN mkdir /home/doron && cd /home/doron
+		COPY ./scripts/bash.sh /home/doron
+	        WORKDIR /home/doron
+	        CMD bash /home/doron/bash.sh '''> Dockerfile
 		echo "running bash file" >> ${report_file}
                 bash ${WORKSPACE}/scripts/bashfile.sh
 		fi'''         	
+		docker build -t bashimg:${BUILD_NUMBER} . && docker run bashimg:
 		}
 	 	}
 	    stage(python) {
