@@ -29,14 +29,14 @@ stages {
 		
 		stage(bash) {
 		steps {
-		sh ''' if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; then
+		sh '''if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; then
 		echo "creating dockerfile for bash code"
 	        cd ${WORKSPACE}
-	        echo '''FROM ubuntu
-	        RUN mkdir /home/doron && cd /home/doron
-		COPY ./scripts/bash.sh /home/doron
-	        WORKDIR /home/doron
-	        CMD bash /home/doron/bash.sh '''> Dockerfile
+	        echo "FROM ubuntu" > Dockerfile" >> Dockerfile
+	        echo "RUN mkdir /home/doron && cd /home/doron" >> Dockerfile
+		echo "COPY ./scripts/bash.sh /home/doron" >> Dockerfile
+	        echo "WORKDIR /home/doron" >> Dockerfile
+	        echo "CMD bash /home/doron/bash.sh >> Dockerfile
 		echo "building bash docker image" 
 		echo "building bash docker image" >> ${report_file}
 		docker build -t bashimg:${BUILD_NUMBER} . && docker run bashimg:${BUILD_NUMBER}
