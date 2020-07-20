@@ -45,9 +45,10 @@ stages {
 		}
 	 	}
 	    stage(python) {
-		
 	       steps {
-	       sh ''' if [ $COMPILER = "python" ] | [ $COMPILER = "all" ]; then
+	       sh ''' 
+	       echo $compiler
+	       if [ $COMPILER = "python" ] | [ $COMPILER = "all" ]; then
                echo "creating docker imagefile for bash file"
 	       cd ${WORKSPACE}
 	       echo "FROM python:3.7-alpine" > Dockerfile
