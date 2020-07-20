@@ -2,7 +2,7 @@ pipeline {
     agent any
  environment {
  report_file="${WORKSPACE}/report"
- COMPILER=${COMP_NAME}
+ COMPILER="${COMP_NAME}"
  USER=credentials('DOCKERHUB_USER')
  PASS=credentials('DOCKERHUB_PASSWORD')	
 	}  
