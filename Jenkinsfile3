@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'docker1' }
  environment {
  report_file="${WORKSPACE}/report"
  COMPILER="${COMP_NAME}"
@@ -24,6 +24,7 @@ stages {
 		echo "changing permissions" >> ${report_file}
 		cd ${WORKSPACE}/scripts
 		chmod 755 *'''
+		echo $COMPILER
 		 }
 		 }	
 		
@@ -41,7 +42,6 @@ stages {
 		echo "building bash docker image" >> ${report_file}
 		docker build -t bashimg:${BUILD_NUMBER} . && docker run bashimg:${BUILD_NUMBER}
 		fi'''         	
-		
 		}
 	 	}
 	    stage(python) {
