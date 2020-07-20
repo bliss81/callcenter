@@ -30,7 +30,7 @@ stages {
 		stage(bash) {
 		steps {
 		sh '''
-		if [ "$COMPILER" = "bash" ] | [ "$COMPILER" = "all" ]; then
+		if [[ "$COMPILER" == "bash" ]] || [[ "$COMPILER" == "all" ]]; then
 		echo "creating dockerfile for bash code"
 	        cd ${WORKSPACE}
 	        echo "FROM ubuntu" > Dockerfile" >> Dockerfile
