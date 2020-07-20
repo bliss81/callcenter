@@ -11,8 +11,6 @@ stages {
             steps {
 	    sh '''
 	    echo "hello this is build number ${BUILD_NUMBER} results:" >> ${report_file}
-	    echo $COMPILER
-
 	    '''
 	    }
 	    }
@@ -31,7 +29,10 @@ stages {
 		
 		stage(bash) {
 		steps {
-		sh '''if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; then
+		sh '''
+		echo "123123"
+		echo $COMPILER
+		if [ $COMPILER = "bash" ] | [ $COMPILER = "all" ]; then
 		echo "creating dockerfile for bash code"
 	        cd ${WORKSPACE}
 	        echo "FROM ubuntu" > Dockerfile" >> Dockerfile
