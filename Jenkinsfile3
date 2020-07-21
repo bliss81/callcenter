@@ -18,7 +18,7 @@ stages {
 		echo "RUN cd /home/doron" >> Dockerfile
 		echo "COPY ./scripts/bash.sh /home/doron" >> Dockerfile
 	        echo "WORKDIR /home/doron" >> Dockerfile
-	        echo "CMD bash /home/doron/bash.sh >> Dockerfile
+	        echo "CMD bash /home/doron/bash.sh" >> Dockerfile
 		echo "building bash docker image" 
 		echo "building bash docker image" >> ${report_file}
 		docker build -t bashimg:${BUILD_NUMBER} . 
