@@ -23,7 +23,7 @@ stages {
 		docker build -t bashimg:${BUILD_NUMBER} . 
 		docker run bashimg:${BUILD_NUMBER} /bin/bash /home/doron/bashfile.sh $ARGU'''         			}
 		fi
-		
+	}
 	}
 	stage(python) {
 		steps {
@@ -39,9 +39,11 @@ stages {
 	        echo "running python file" 
 	        echo "running python file" >> ${report_file}
 		docker build -t pythonimg:${BUILD_NUMBER} . 
-		docker run pythonimg:${BUILD_NUMBER} python /home/doron/pyfile.py $ARGU'''
+		docker run pythonimg:${BUILD_NUMBER} python /home/doron/pyfile.py $ARGU
+		fi'''
+
 		}
-		fi
+		}
 	}
 	}
-        }
+
