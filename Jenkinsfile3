@@ -51,7 +51,7 @@ stages {
 		if [ "$COMPILER" = "cpp" ] || [ "$COMPILER" = "all" ]; then
 		echo "creating dockerfile for cpp code"
     		echo "creating docker imagefile for cpp code"
- 	        echo "FROM gcc" > Dockerfile
+ 	        echo "FROM frolvlad/alpine-gcc" > Dockerfile
 	        echo "RUN mkdir /home/doron" >> Dockerfile
 		echo "RUN cd /home/doron" >> Dockerfile
 		echo "COPY ./scripts/cfile.c /home/doron" >> Dockerfile
