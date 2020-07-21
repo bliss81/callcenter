@@ -1,15 +1,14 @@
-#include <iostream>
-#include <algorithm>
-#include <iterator>
+#include <stdio.h>
 
-int main( int argc, char* argv[] )
-{
-    // print all command line arguments
-    std::cout << "name of program: " << argv[0] << '\n' ;
+int main( int argc, char *argv[] )  {
 
-    if( argc > 1 )
-    {
-        std::cout << "there are " << argc-1 << " (more) arguments, they are:\n" ;
-
-        std::copy( argv+1, argv+argc, std::ostream_iterator<const char*>( std::cout, "\n" ) ) ;
-    }
+   if( argc == 2 ) {
+      printf("The argument supplied is %s\n", argv[1]);
+   }
+   else if( argc > 2 ) {
+      printf("Too many arguments supplied.\n");
+   }
+   else {
+      printf("One argument expected.\n");
+   }
+}
