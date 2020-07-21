@@ -13,7 +13,7 @@ stages {
 		if [ "$COMPILER" = "bash" ]; then
 		echo "creating dockerfile for bash code"
 	        cd ${WORKSPACE}
-	        echo "FROM ubuntu" > Dockerfile" >> Dockerfile
+	        echo "FROM ubuntu" > Dockerfile
 	        echo "RUN mkdir /home/doron" >> Dockerfile
 		echo "RUN cd /home/doron" >> Dockerfile
 		echo "COPY ./scripts/bash.sh /home/doron" >> Dockerfile
@@ -21,7 +21,8 @@ stages {
 	        echo "CMD bash /home/doron/bash.sh >> Dockerfile
 		echo "building bash docker image" 
 		echo "building bash docker image" >> ${report_file}
-		docker build -t bashimg:${BUILD_NUMBER} . && docker run bashimg:${BUILD_NUMBER}
+		docker build -t bashimg:${BUILD_NUMBER} . 
+		docker run bashimg:${BUILD_NUMBER}
 		fi'''         	
 		}
 	 	}
