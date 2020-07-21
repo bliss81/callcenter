@@ -8,6 +8,7 @@ stages {
 		stage(bash) {
 		steps {
 		sh '''
+		echo $COMPILER
 		echo "creating dockerfile for bash code"
 	        echo "FROM ubuntu" > Dockerfile
 	        echo "RUN mkdir /home/doron" >> Dockerfile
@@ -18,9 +19,7 @@ stages {
 		echo "building bash docker image" 
 		echo "building bash docker image" >> ${report_file}
 		docker build -t bashimg:${BUILD_NUMBER} . 
-		docker run bashimg:${BUILD_NUMBER} 
-'''         	
-		}
-	 	}
+		docker run bashimg:${BUILD_NUMBER} /home/doron/bashfile.sh dorondoron'''         			}
+	}
 	}
         }
