@@ -62,7 +62,7 @@ stages {
 		 }	
     stage(c) {
 	       steps {
-	      sh ''' if [ "$COMPILER" = "cpp" ] | [ "$COMPILER" = "all" ]; then
+	      sh ''' if [ "$COMPILER" = "cpp" ]; then
 	      echo "creating docker imagefile for bash file"
               cd ${WORKSPACE}
 	      echo "FROM gcc" > Dockerfile
