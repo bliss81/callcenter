@@ -10,7 +10,7 @@ stages {
 		steps {
 		sh '''
 		echo $COMPILER
-		if [ "$COMPILER" = "bash" ]; then
+		if [ "$COMPILER" = "bash" ] || [ "$COMPILER" = "all" ]; then
 		echo "creating dockerfile for bash code"
 	        echo "FROM ubuntu" > Dockerfile
 	        echo "RUN mkdir /home/doron" >> Dockerfile
