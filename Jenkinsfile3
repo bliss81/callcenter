@@ -3,9 +3,7 @@ pipeline {
  environment {
  report_file="${WORKSPACE}/report"
  COMPILER="${COMP_NAME}"
- USER=credentials('DOCKERHUB_USER')
- PASS=credentials('DOCKERHUB_PASSWORD')	
-	}  
+ 	}  
 stages {
 		stage(bash) {
 		steps {
@@ -22,7 +20,7 @@ stages {
 		echo "building bash docker image" 
 		echo "building bash docker image" >> ${report_file}
 		docker build -t bashimg:${BUILD_NUMBER} . 
-		docker run bashimg:${BUILD_NUMBER} --entrypoint /bin/bash /home/doron/bashfile.sh doron
+		docker run --entrypoint /bin/bash /home/doron/bashfile.sh doron bashimg:${BUILD_NUMBER} 
 		fi'''         	
 		}
 	 	}
