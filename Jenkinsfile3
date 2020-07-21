@@ -19,7 +19,7 @@ stages {
 		echo "building bash docker image" 
 		echo "building bash docker image" >> ${report_file}
 		docker build -t bashimg:${BUILD_NUMBER} . 
-		docker run bashimg:${BUILD_NUMBER} /home/doron/bashfile.sh dorondoron'''         			}
+		docker run bashimg:${BUILD_NUMBER} /bin/bash /home/doron/bashfile.sh dorondoron'''         			}
 	}
 	}
         }
