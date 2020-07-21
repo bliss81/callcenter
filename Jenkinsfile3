@@ -55,13 +55,13 @@ stages {
 	        echo "RUN mkdir /home/doron" >> Dockerfile
 		echo "RUN cd /home/doron" >> Dockerfile
 		echo "COPY ./scripts/cfile.c /home/doron" >> Dockerfile
-		echo "RUN gcc /home/doron/cfile.c /home/doron/cfile1" >> Dockerfile
+		echo "RUN gcc cfile.c" >> Dockerfile
 	        echo "running gcc on file" 
 	        echo "running gcc on file" >> ${report_file}
 		docker build -t cppimg:${BUILD_NUMBER} . 
 		echo "running c file" 
 	        echo "running c file" >> ${report_file}
-		docker run cppimg:${BUILD_NUMBER} /home/doron/cfile1 $ARGU
+		docker run cppimg:${BUILD_NUMBER} /home/doron/cfile.out $ARGU
 		fi'''
 		}
 		}
