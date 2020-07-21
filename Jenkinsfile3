@@ -25,7 +25,6 @@ stages {
 		fi
 		
 	}
-	}
 	stage(python) {
 		steps {
 		sh '''
