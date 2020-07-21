@@ -10,7 +10,7 @@ stages {
 		stage(bash) {
 		steps {
 		sh '''
-		if [[ "$COMPILER" == "bash" ]] || [[ "$COMPILER" == "all" ]]; then
+		if [ "$COMPILER" == "bash" ]; then
 		echo "creating dockerfile for bash code"
 	        cd ${WORKSPACE}
 	        echo "FROM ubuntu" > Dockerfile" >> Dockerfile
@@ -24,22 +24,5 @@ stages {
 		fi'''         	
 		}
 	 	}
-	    stage(python) {
-	       steps {
-	       sh ''' 
-	       if [ "$COMPILER" = "python" ]; then
-               echo "creating docker imagefile for bash file"
-	       cd ${WORKSPACE}
-	       echo "FROM python:3.7-alpine" > Dockerfile
-	       echo "COPY ./scripts/python.py /app" >> Dockerfile
-	       echo "WORKDIR /app" >> Dockerfile
-	       echo "CMD python /app/python.py" >> Dockerfile
-	       echo "running python file" 
-	       echo "running python file" >> ${report_file}
-	       python ${WORKSPACE}/scripts/pyfile.py
-	       fi'''       
-		 }
-		 }	
-   	
-        }
+	}
         }
