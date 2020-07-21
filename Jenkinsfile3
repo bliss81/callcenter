@@ -20,9 +20,28 @@ stages {
 	        echo "CMD bash /home/doron/bashfile.sh" >> Dockerfile
 		echo "building bash docker image" 
 		echo "building bash docker image" >> ${report_file}
-		fi
 		docker build -t bashimg:${BUILD_NUMBER} . 
 		docker run bashimg:${BUILD_NUMBER} /bin/bash /home/doron/bashfile.sh $ARGU'''         			}
+		fi
+		
+	}
+	}
+	stage(python) {
+		steps {
+		sh '''
+		echo $COMPILER
+		if [ "$COMPILER" = "python" ] || [ "$COMPILER" = "all" ]; then
+		echo "creating dockerfile for python code"
+    		echo "creating docker imagefile for python code"
+ 	        echo "FROM python:3.7-alpine" > Dockerfile
+	        echo "RUN mkdir /home/doron" >> Dockerfile
+		echo "RUN cd /home/doron" >> Dockerfile
+		echo "COPY ./scripts/python.py /home/doron" >> Dockerfile
+	        echo "running python file" 
+	        echo "running python file" >> ${report_file}
+		docker build -t pythonimg:${BUILD_NUMBER} . 
+		docker run pythonimg:${BUILD_NUMBER} python /home/doron/python.py $ARGU'''         			}
+		fi
 	}
 	}
         }
