@@ -10,7 +10,7 @@ stages {
 		stage(bash) {
 		steps {
 		sh '''
-		if [ "$COMPILER" = "bash" ]; then
+		if [ "$COMPILER" = "bash" ] | [ "$COMPILER" = "all" ]; then
 		echo "creating dockerfile for bash code"
 	        cd ${WORKSPACE}
 	        echo "FROM ubuntu" > Dockerfile
@@ -22,7 +22,9 @@ stages {
 		echo "building bash docker image" 
 		echo "building bash docker image" >> ${report_file}
 		docker build -t bashimg:${BUILD_NUMBER} . 
-		docker run bashimg:${BUILD_NUMBER}
+		ENTRYPOINT ["bashfile.sh", "param1"]
+		docker run bashimg:${BUILD_NUMBER} bashfile.sh_entrypoint
+		Docker run python appfile_entry_point doron
 		fi'''         	
 		}
 	 	}
