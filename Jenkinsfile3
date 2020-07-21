@@ -14,7 +14,8 @@ stages {
 		echo "creating dockerfile for bash code"
 	        cd ${WORKSPACE}
 	        echo "FROM ubuntu" > Dockerfile" >> Dockerfile
-	        echo "RUN mkdir /home/doron && cd /home/doron" >> Dockerfile
+	        echo "RUN mkdir /home/doron" >> Dockerfile
+		echo "RUN cd /home/doron" >> Dockerfile
 		echo "COPY ./scripts/bash.sh /home/doron" >> Dockerfile
 	        echo "WORKDIR /home/doron" >> Dockerfile
 	        echo "CMD bash /home/doron/bash.sh >> Dockerfile
