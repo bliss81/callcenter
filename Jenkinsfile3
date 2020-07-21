@@ -36,11 +36,12 @@ stages {
  	        echo "FROM python:3.7-alpine" > Dockerfile
 	        echo "RUN mkdir /home/doron" >> Dockerfile
 		echo "RUN cd /home/doron" >> Dockerfile
-		echo "COPY ./scripts/python.py /home/doron" >> Dockerfile
+		echo "COPY ./scripts/pyfile.py /home/doron" >> Dockerfile
 	        echo "running python file" 
 	        echo "running python file" >> ${report_file}
 		docker build -t pythonimg:${BUILD_NUMBER} . 
-		docker run pythonimg:${BUILD_NUMBER} python /home/doron/python.py $ARGU'''         			}
+		docker run pythonimg:${BUILD_NUMBER} python /home/doron/pyfile.py $ARGU'''
+		}
 		fi
 	}
 	}
