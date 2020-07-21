@@ -47,7 +47,7 @@ stages {
 	    stage(python) {
 	       steps {
 	       sh ''' 
-	       if [ "$COMPILER" = "python" ] | [ "$COMPILER" = "all" ]; then
+	       if [ "$COMPILER" = "python" ]; then
                echo "creating docker imagefile for bash file"
 	       cd ${WORKSPACE}
 	       echo "FROM python:3.7-alpine" > Dockerfile
@@ -60,27 +60,6 @@ stages {
 	       fi'''       
 		 }
 		 }	
-    stage(c) {
-	       steps {
-	      sh ''' if [ "$COMPILER" = "cpp" ]; then
-	      echo "creating docker imagefile for bash file"
-              cd ${WORKSPACE}
-	      echo "FROM gcc" > Dockerfile
-              echo "COPY ./scripts/python.c /app" >> Dockerfile
-		echo "run gcc -o /app/app /app/cpp.c" >> Dockerfile
-		echo "run chmod 777 /app/app" >> Dockerfile
-		echo "cmd /app/app" >> Dockerfile" 
-	      gcc ${WORKSPACE}/scripts/cfile.c -o crunfile
-	      echo "running compiled file"
-	      echo "running compiled file"  >> ${report_file}
-              ${WORKSPACE}/crunfile
-	      fi'''
-		         }
-	         }	
+   	
         }
-        post {
-    success {sh '''echo "result success"
-    		   echo "result success" >> ${report_file}'''}
-    failure {sh '''echo "result failure"
-    		   echo "result failure " >> ${report_file}'''}
-    }}
+        
