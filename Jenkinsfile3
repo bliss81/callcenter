@@ -3,12 +3,14 @@ pipeline {
  environment {
  report_file="${WORKSPACE}/report"
  COMPILER="${COMP_NAME}"
+ ARGU="${ARGUM}"
  	}  
 stages {
 		stage(bash) {
 		steps {
 		sh '''
 		echo $COMPILER
+		if [ "$COMPILER" = "bash" ]; then
 		echo "creating dockerfile for bash code"
 	        echo "FROM ubuntu" > Dockerfile
 	        echo "RUN mkdir /home/doron" >> Dockerfile
@@ -18,8 +20,9 @@ stages {
 	        echo "CMD bash /home/doron/bashfile.sh" >> Dockerfile
 		echo "building bash docker image" 
 		echo "building bash docker image" >> ${report_file}
+		fi
 		docker build -t bashimg:${BUILD_NUMBER} . 
-		docker run bashimg:${BUILD_NUMBER} /bin/bash /home/doron/bashfile.sh dorondoron'''         			}
+		docker run bashimg:${BUILD_NUMBER} /bin/bash /home/doron/bashfile.sh $ARGU'''         			}
 	}
 	}
         }
