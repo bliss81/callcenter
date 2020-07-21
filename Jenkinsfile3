@@ -7,26 +7,6 @@ pipeline {
  PASS=credentials('DOCKERHUB_PASSWORD')	
 	}  
 stages {
-	    stage (hello) {
-            steps {
-	    sh '''
-	    echo "hello this is build number ${BUILD_NUMBER} results:" >> ${report_file}
-	    '''
-	    }
-	    }
-	    stage(scm) {
-		steps {
-		checkout scm
-		sh '''
-		echo "downloading from github" 
-		echo "downloading from github" >> ${report_file}
-		echo "changing permissions" 
-		echo "changing permissions" >> ${report_file}
-		cd ${WORKSPACE}/scripts
-		chmod 755 *'''
-		 }
-		 }	
-		
 		stage(bash) {
 		steps {
 		sh '''
@@ -62,4 +42,4 @@ stages {
 		 }	
    	
         }
-        
+        }
