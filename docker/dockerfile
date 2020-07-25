@@ -1,2 +1,15 @@
-FROM fialadoron/webserver:1.0
-COPY ./index.html /var/www/html/
+ARG language
+
+FROM ubuntu AS base
+RUN apt udate
+WORKDIR 
+FROM base as branch-version-python
+RUN apt install python
+ENTRYPOINT ["python", "./python.py"]
+
+FROM base as branch-version-bash
+COPY 
+
+FROM base as branch-version-all
+RUN apt install python
+
