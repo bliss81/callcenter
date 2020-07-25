@@ -17,7 +17,7 @@ ENTRYPOINT ["bash", "./bashfile.sh"]
 FROM base as branch-version-all
 RUN apt install python
 COPY ./scripts/pyfile.py .
-COPY ./scripts/bashfilr.sh .
+COPY ./scripts/bashfile.sh .
 ENTRYPOINT ["bash", "./allscritps.sh"]
 
 FROM branch-version-${language} AS final
