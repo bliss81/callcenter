@@ -6,6 +6,11 @@ pipeline {
  ARGU="${ARGUM}"
  	}  
 stages {
+		stage('clone git') {
+       		steps {
+          	checkout scm
+        	} 
+      		}
 		stage(docker) {
 		steps {
 		sh '''
