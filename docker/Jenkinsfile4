@@ -1,0 +1,22 @@
+pipeline {
+    agent { label 'docker1' }
+ environment {
+ report_file="${WORKSPACE}/report"
+ COMPILER="${COMP_NAME}"
+ ARGU="${ARGUM}"
+ 	}  
+stages {
+		stage(docker) {
+		steps {
+		sh '''
+		echo $COMPILER
+		echo "creating image for $COMPILER"
+		echo "building $COMPILER docker image" >> ${report_file}
+		docker build -t $COMPILER:${BUILD_NUMBER} . 
+		docker run $COMPILER:${BUILD_NUMBER} $ARGU
+		fi'''         			
+	}
+	}
+	
+	}
+	}
