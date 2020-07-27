@@ -4,6 +4,8 @@ pipeline {
  report_file="${WORKSPACE}/report"
  COMPILER="${COMP_NAME}"
  ARGU="${ARGUM}"
+ USER=credentials('DOCKERHUB_USER')
+ PASS=credentials('DOCKERHUB_PASSWORD')	
  	}  
 stages {
 		stage('clone git') {
@@ -18,6 +20,8 @@ stages {
 		echo "creating image for $COMPILER"
 		echo "building $COMPILER docker image" >> ${report_file}
 		docker build -t $COMPILER:${BUILD_NUMBER} --build-arg language=$COMPILER . 
+		docker login -u ${USER} -p ${PASS}
+		docker push $COMPILER:${BUILD_NUMBER}
 		docker run $COMPILER:${BUILD_NUMBER} $ARGU
 		'''         			
 	}
