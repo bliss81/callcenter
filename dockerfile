@@ -19,6 +19,6 @@ RUN apt install python -y
 COPY ./scripts/pyfile.py .
 COPY ./scripts/bashfile.sh .
 COPY ./scripts/allscripts.sh .
-ENTRYPOINT ["bash", "./allscritps.sh"]
+ENTRYPOINT ["bash", "./allscripts.sh"]
 
 FROM branch-version-${language} AS final
