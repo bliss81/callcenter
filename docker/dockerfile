@@ -6,7 +6,7 @@ RUN mkdir /home/doron
 WORKDIR /home/doron
 
 FROM base as branch-version-python
-RUN apt install python
+RUN apt install python -y
 COPY ./scripts/pyfile.py .
 ENTRYPOINT ["python", "./pyfile.py"]
 
