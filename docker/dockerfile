@@ -11,7 +11,7 @@ COPY ./scripts/pyfile.py .
 ENTRYPOINT ["python", "./pyfile.py"]
 
 FROM base as branch-version-bash
-COPY ./scripts/bashfilr.sh .
+COPY ./scripts/bashfile.sh .
 ENTRYPOINT ["bash", "./bashfile.sh"]
 
 FROM base as branch-version-all
