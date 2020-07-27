@@ -1,7 +1,7 @@
 ARG language
 
 FROM ubuntu AS base
-RUN apt update
+RUN apt update -y
 RUN mkdir /home/doron
 WORKDIR /home/doron
 
@@ -15,7 +15,7 @@ COPY ./scripts/bashfile.sh .
 ENTRYPOINT ["bash", "./bashfile.sh"]
 
 FROM base as branch-version-all
-RUN apt install python
+RUN apt install python -y
 COPY ./scripts/pyfile.py .
 COPY ./scripts/bashfile.sh .
 COPY ./scripts/allscripts.sh .
