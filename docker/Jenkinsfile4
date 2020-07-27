@@ -18,7 +18,7 @@ stages {
 		echo $COMPILER
 		echo "creating image for $COMPILER"
 		echo "building $COMPILER docker image" >> ${report_file}
-		docker build -t $COMPILER:${BUILD_NUMBER} --buildarg language=$COMPILER . 
+		docker build -t $COMPILER:${BUILD_NUMBER} --build-arg language=$COMPILER . 
 		docker run $COMPILER:${BUILD_NUMBER} $ARGU
 		fi'''         			
 	}
