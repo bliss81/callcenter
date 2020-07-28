@@ -22,7 +22,7 @@ stages {
 		docker build -t $COMPILER:${BUILD_NUMBER} --build-arg language=$COMPILER . 
 		docker login -u ${USER} -p ${PASS}
 		docker tag $COMPILER:${BUILD_NUMBER} fialadoron/webserver:${BUILD_NUMBER}
-		docker push $COMPILER:${BUILD_NUMBER}
+		docker push fialadoron/$COMPILER:${BUILD_NUMBER}
 		docker run $COMPILER:${BUILD_NUMBER} $ARGU
 		'''         			
 	}
