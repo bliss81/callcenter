@@ -18,12 +18,12 @@ stages {
 		sh '''
 		echo $COMPILER
 		echo "creating image for $COMPILER"
-		echo "building $COMPILER docker image" >> ${report_file}
-		docker build -t $COMPILER:${BUILD_NUMBER} --build-arg language=$COMPILER . 
+		echo "building fialadoron/$COMPILER docker image" >> ${report_file}
+		docker build -t fialadoron/$COMPILER:${BUILD_NUMBER} --build-arg language=$COMPILER . 
 		docker login -u ${USER} -p ${PASS}
-		docker tag $COMPILER:${BUILD_NUMBER} fialadoron/webserver:${BUILD_NUMBER}
+		docker tag fialadoron/$COMPILER:${BUILD_NUMBER} fialadoron/webserver:${BUILD_NUMBER}
 		docker push fialadoron/$COMPILER:${BUILD_NUMBER}
-		docker run $COMPILER:${BUILD_NUMBER} $ARGU
+		docker run fialadoron/$COMPILER:${BUILD_NUMBER} $ARGU
 		'''         			
 	}
 	}
